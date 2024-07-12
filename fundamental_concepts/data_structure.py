@@ -53,4 +53,19 @@ tuple_example = 1, 2, 'tuple'
 
 x, y, z = tuple_example
 
+# 3. Set
 
+"""
+  - A disordered collection of elements
+  - Without repeated elements
+"""
+
+basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+# Will remove repeated elements
+
+# 4. Dict
+
+"""
+  - A disordered collection of elements
+  - Without repeated elements
+"""
