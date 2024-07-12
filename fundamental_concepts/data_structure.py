@@ -36,5 +36,21 @@ my_list.clear()
 # Equivalent
 del my_list[:]
 
+# 2. Tuple
+
+"""
+  - Similar to list, but they are immutable.
+  - Used when a collection of items cannot be changed
+"""
+
+my_tuple = (1, 2, 3, 'four')
+
+# It can also be defined like this
+my_tuple = 1, 2, 3, 'four'
+
+# Packing and unpacking
+tuple_example = 1, 2, 'tuple'
+
+x, y, z = tuple_example
 
 
