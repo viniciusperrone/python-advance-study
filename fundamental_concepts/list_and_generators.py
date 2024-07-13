@@ -43,12 +43,8 @@ square_for = []
 for x in range(0, 10):
     square_for.append(x * x)
 
-print(square_for)
-
 # In List
 square_list = [x * x for x in range(0, 10)]
-
-print(square_list)
 
 """
     Understanding the both ways of generating a list of squared numbers,
@@ -86,3 +82,23 @@ print(loop_for_time, list_comprehension_time)
     We can only see the difference between understanding
     generators that generate items on demand.
 """
+
+# 4. Generators
+
+"""
+    Both are concise ways to create list and iterators.
+    But, they differ significantly in memory terms.
+"""
+
+# 4.1 What it is
+
+"""
+    A Generators comprehension create and returns a generator object
+    that produces elements on demand. This means saving memory.
+
+    (expression for item in iterable if conditional)
+"""
+
+# Example
+squares_gen = (x * x for x in range(10))
+print(list(squares_gen))
