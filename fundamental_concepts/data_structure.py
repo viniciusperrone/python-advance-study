@@ -2,7 +2,7 @@
 Data structure
 
 Here, we'll understand the structure data in Python.
-Basic concepts about data types such as: lists, tuples, 
+Basic concepts about data types such as: lists, tuples,
 dictionaries and others that we already know.
 """
 
@@ -11,7 +11,7 @@ dictionaries and others that we already know.
 """
   - An ordered and changeable collection of items.
   - Items can be of any type and accessed by indexes.
-  - It supports operations such as adding, removing and slicing elements. 
+  - It supports operations such as adding, removing and slicing elements.
 """
 
 my_list = ['a', 'b', 3, 'c', 'd']
@@ -63,9 +63,18 @@ x, y, z = tuple_example
 basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
 # Will remove repeated elements
 
-# 4. Dict
+# 4. Dictionaries
 
 """
   - A disordered collection of elements
   - Without repeated elements
 """
+
+my_dict = {
+    'name': 'Vinicius',
+    'age': 22
+}
+
+# Add new key-value
+my_dict["new_attribute"] = "any"
+
