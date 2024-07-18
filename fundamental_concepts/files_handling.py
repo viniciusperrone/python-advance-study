@@ -186,3 +186,47 @@ def get_files():
 
 if __name__ == '__main__':
     get_files()
+
+# 3. Making directories
+
+"""
+    Below, we have different ways to create
+    directories.
+
+    - `os.mkdir` method creates a single subdirectory
+    - `pathlib.Path.mkdir` method creates single or multiple directories
+    - `os.makedirs` method creates multiple directories, including intermediate directories
+"""
+
+# 3.1 Creating single directory
+
+# With `os.mkdir`
+os.mkdir("example_directory/")
+
+# With `pathlib`
+
+""""
+    Can use `exist_ok` arguments if already exist.
+"""
+
+path = Path('example_directory/')
+
+try:
+    path.mkdir(exist_ok=True)
+except FileExistsError as file_exception:
+    pass
+
+# 3.2 Creating Multiple Directories
+
+"""
+    Very similar to `os.mkdir`, the different between the both
+    is that not only can `os.makedirs` create individual directories.
+"""
+
+""""
+    This method has default permissions for create directory. If we need
+    to create directories with different permission call, must pass mode
+    with the value `0o770`.
+"""
+
+os.makedirs("parent_folder/children_1/children_2", exist_ok=True)
