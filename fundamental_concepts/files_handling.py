@@ -132,3 +132,57 @@ for entry in basepath.iterdir():
         subdirectories.append(entry.name)
 
 print("Subdirectories: ", subdirectories)
+
+# 2.4 Getting File Attributes
+
+"""
+    We can retrieve file attributes such
+    as file size and modified time. This is
+    done through `os.stat`, `os.scandir` or
+    `pathlib`
+"""
+
+# Example
+
+"""
+    The example bellow show how to get time the files were last modified
+"""
+
+with os.scandir("fundamental_concepts/") as dir_contents:
+    for entry in dir_contents:
+        info = entry.stat()
+        print(info.st_mtime)
+
+# Made in `pathlib`
+
+basepath = Path("fundamental_concepts/")
+
+print("Done in pathlib")
+
+for path in basepath.iterdir():
+    info = path.stat()
+    print(info.st_mtime)
+
+# Improving getting info
+
+from datetime import datetime
+
+basepath = "fundamental_concepts/"
+
+def convert_date(timestamp):
+    current_date = datetime.utcfromtimestamp(timestamp)
+    formatted_date = current_date.strftime("%d %b %Y")
+
+    return formatted_date
+
+def get_files():
+    dir_entries = os.scandir(basepath)
+
+    for entry in dir_entries:
+        if entry.is_file():
+            info = entry.stat()
+
+            print(f'File: {entry.name}\t Last Modified: {convert_date(info.st_mtime)}')
+
+if __name__ == '__main__':
+    get_files()
