@@ -92,3 +92,43 @@ files_in_basepath = (entry for entry in basepath.iterdir() if entry.is_file())
 
 for item in files_in_basepath:
     print(item.name)
+
+# 2.3 List subdirectories
+
+"""
+    To list subdirectories instead of file, use one the methods below.
+
+    `os.listdir` or `os.path`
+"""
+
+basepath = "fundamental_concepts/"
+subdirectories = []
+
+for entry in os.listdir(basepath):
+    if os.path.isdir(os.path.join(basepath, entry)):
+        subdirectories.append(entry)
+
+print("Subdirectories: ", subdirectories)
+
+# Using `os.scandir`
+
+basepath = "fundamental_concepts/"
+subdirectories = []
+
+with os.scandir(basepath) as entries:
+    for entry in entries:
+        if entry.is_dir():
+            subdirectories.append(entry.name)
+
+print("Subdirectories: ", subdirectories)
+
+# Using `pathlib`
+
+basepath = Path("fundamental_concepts/")
+subdirectories = []
+
+for entry in basepath.iterdir():
+    if entry.is_dir():
+        subdirectories.append(entry.name)
+
+print("Subdirectories: ", subdirectories)
