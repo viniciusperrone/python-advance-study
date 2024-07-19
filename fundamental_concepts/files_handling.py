@@ -201,7 +201,7 @@ if __name__ == '__main__':
 # 3.1 Creating single directory
 
 # With `os.mkdir`
-# os.mkdir("example_directory/")
+os.mkdir("example_directory/")
 
 # With `pathlib`
 
@@ -311,3 +311,39 @@ for dirpath, dirnames, files in os.walk('./fundamental_concepts'):
     for file_name in files:
         print(file_name)
 
+# 6. Making Temporary Files and Directories
+
+"""
+    Python provides a handy module for creating temporary files
+    and directories called `tempfile`. It can be used to open and
+    store data temporarily in a file or directory while your program
+    is running. Also, `tempfile` handles the deletion these files or
+    directories used when your program is done.
+"""
+
+# 6.1 Creating a temporary file
+from tempfile import TemporaryFile
+
+fp = TemporaryFile('w+t')
+fp.write('Hello universe!')
+
+fp.seek(0)
+
+data = fp.read()
+print(data)
+
+fp.close()
+
+# It's also can be used in conjunction with th `with` statement
+with TemporaryFile('w+t') as fp:
+    fp.write('Hello universe')
+    fp.seek(0)
+    print(f"Content of temporary file: {fp.read()}")
+
+# 6.2 Creating temporary directories
+
+import tempfile
+
+with tempfile.TemporaryDirectory() as tmpdir:
+    print('Created temporary directory ', tmpdir)
+    os.path.exists(tmpdir)
