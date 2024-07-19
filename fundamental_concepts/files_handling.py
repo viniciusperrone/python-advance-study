@@ -347,3 +347,98 @@ import tempfile
 with tempfile.TemporaryDirectory() as tmpdir:
     print('Created temporary directory ', tmpdir)
     os.path.exists(tmpdir)
+
+# 7. Deleting Files and Directories
+
+"""
+    The `os`, `shutil`, and `pathlib` module provides an way
+    handle exclusion of single files, directories and entire directory trees
+"""
+
+# 7.1 Deleting Files in Python
+
+"""
+    To delete a single file, use `pathlib.Path.inlink()`, `os.remove()` or
+    `os.inlink()`
+"""
+
+data_file = 'C:\\Users\\AnyUser\\Desktop\\Test\\data.txt'
+
+try:
+    os.remove(data_file)
+except OSError as e:
+    print(f"Error: {data_file} : {e.strerror}")
+
+    pass
+
+# Using `os.unlink`
+data_file = 'C:\\Users\\AnyUser\\Desktop\\Test\\data.txt'
+
+try:
+    os.unlink(data_file)
+except OSError as e:
+    print(f"Error: {data_file} : {e.strerror}")
+
+    pass
+
+# Using `pathlib.Path.unlink()`
+data_file = Path('C:\\Users\\AnyUser\\Desktop\\Test\\data.txt')
+
+try:
+    data_file.unlink()
+except IsADirectoryError as e:
+    print(f"Error: {data_file} : {e.strerror}")
+
+# 7.2 Deleting Directories
+
+"""
+    The `os.rmdir`, `pathlib.rmdir` and `shutil.rmtree` can be used
+    for deleting of directories.
+"""
+
+# Deleting Single Directory or Folder
+
+"""
+    To delete a single directory or folder, can be used `os.rmdir()` or
+    `pathlib.rmdir()`, but these both methods only work if the directory or
+    folder is empty. If not, it returns an `osError` error is raised.
+"""
+
+trash_dir = 'my_documents/bad_dir'
+
+try:
+    os.rmdir(trash_dir)
+except OSError as e:
+    print(f"Error: {trash_dir} : {e.strerror}")
+
+# Other Alternative
+trash_dir = Path('my_documents/bad_dir')
+
+try:
+    trash_dir.rmdir()
+except OSError as e:
+    print(f"Error: {trash_dir} : {e.strerror}")
+
+# 7.3 Deleting Entire Directory Trees
+
+"""
+    To delete non-empty directories and entire
+    directory trees, Python offers `shutil.rmtree()`
+"""
+
+import shutil
+
+trash_dir = 'my_documents/bad_dir'
+
+try:
+    shutil.rmtree(trash_dir)
+except OSError as e:
+    print(f"Error: {trash_dir} : {e.strerror}")
+
+# To delete empty folders recursively
+
+for dirpath, dirname, files in os.walk('.', topdown=False):
+    try:
+        os.rmdir(dirpath)
+    except OSError as ex:
+        pass
