@@ -230,3 +230,67 @@ except FileExistsError as file_exception:
 """
 
 os.makedirs("parent_folder/children_1/children_2", exist_ok=True)
+
+# 4. Filename Pattern Matching
+
+"""
+    We will cover filename patterns, methods and functions for
+    interaction. These are the methods and functions available
+    to you:
+
+    - `endswith()` and `startswith()` string methods
+    - `fnmatch.fnmatch()`
+    - `glob.glob()`
+    - `pathlib.Path.glob`
+"""
+
+# 4.1 Using String methods
+
+# Get .txt files
+for f_name in os.listdir('example_directory/'):
+    if(f_name.endswith('.txt')):
+        print(f_name)
+
+# 4.2 Using `fnmatch`
+
+"""
+    `fnmatch` has more advanced functions and methods for pattern matching.
+"""
+
+import fnmatch
+
+for file_name in os.listdir('example_directory/'):
+    if fnmatch.fnmatch(file_name, '*.txt'):
+        print(file_name)
+
+# 4.3 Advance Pattern Matching
+
+"""
+    If you want to find `.txt` files that meet certain criteria. For example,
+    you could be only interested in finding `.txt` specific files that contain
+    certain word for like 'data_01'.
+"""
+
+for filename in os.listdir('.'):
+    if fnmatch.fnmatch('filename', 'data_*_backup.txt'):
+        print(filename)
+
+# 4.4 Filename Pattern Matching Using `glob`
+
+"""
+    The `.glob()` is module very similar with `fnmatch.fnmatch()`, but
+    it treats files beginning with period (.) as special
+"""
+
+import glob
+
+files_found =  glob.glob('**/*.py')
+
+print('Files Found: ', files_found)
+
+# Using `pathlib`
+
+current_path = Path('./fundamental_concepts')
+
+for filename in current_path.glob('*.p*'):
+    print(filename)
