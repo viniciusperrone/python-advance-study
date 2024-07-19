@@ -201,7 +201,7 @@ if __name__ == '__main__':
 # 3.1 Creating single directory
 
 # With `os.mkdir`
-os.mkdir("example_directory/")
+# os.mkdir("example_directory/")
 
 # With `pathlib`
 
@@ -294,3 +294,20 @@ current_path = Path('./fundamental_concepts')
 
 for filename in current_path.glob('*.p*'):
     print(filename)
+
+# 5. Traversing Directories and Processing Files
+
+"""
+    We'll exploring walking a directories tree and
+    processing files in tree. To do this, we'll use
+    an integrated function `os.walk` from the `os`
+    module.
+"""
+
+# Walking a directory tree and get data of the directories and files
+for dirpath, dirnames, files in os.walk('./fundamental_concepts'):
+    print(f'Found directory: {dirpath}')
+
+    for file_name in files:
+        print(file_name)
+
