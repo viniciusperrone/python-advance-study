@@ -201,7 +201,7 @@ if __name__ == '__main__':
 # 3.1 Creating single directory
 
 # With `os.mkdir`
-os.mkdir("example_directory/")
+# os.mkdir("example_directory/")
 
 # With `pathlib`
 
@@ -382,12 +382,12 @@ except OSError as e:
     pass
 
 # Using `pathlib.Path.unlink()`
-data_file = Path('C:\\Users\\AnyUser\\Desktop\\Test\\data.txt')
+# data_file = Path('C:\\Users\\AnyUser\\Desktop\\Test\\data.txt')
 
-try:
-    data_file.unlink()
-except IsADirectoryError as e:
-    print(f"Error: {data_file} : {e.strerror}")
+# try:
+#     data_file.unlink()
+# except IsADirectoryError as e:
+#     print(f"Error: {data_file} : {e.strerror}")
 
 # 7.2 Deleting Directories
 
@@ -442,3 +442,58 @@ for dirpath, dirname, files in os.walk('.', topdown=False):
         os.rmdir(dirpath)
     except OSError as ex:
         pass
+
+# 8 Copying, Moving, and Renaming Files and Directories
+
+"""
+    Python ships with the `shutil` module. It's is short
+    for shell utilities. It provides a number of hight-level
+    operations on files to support copying, archiving, and
+    removal of files and directories. In this section, you'll
+    learn how to move and copy files and directories.
+"""
+
+# 8.1 Copying Files in Python
+
+current_path_file = os.path.dirname(os.path.realpath(__file__)) + '/files_handling.py'
+
+destination_dir = os.path.join(os.path.dirname(__file__), '..')
+
+shutil.copy(current_path_file, destination_dir)
+
+"""
+    If you want preserve metadata of files when copying, it's necessary use `shutil.copy2`
+"""
+
+# 8.2 Copying Directories
+
+"""
+    The `shutil.copytree` can be used to copy an entire directory and
+    everything container in it.
+"""
+
+# Example
+
+shutil.copytree('fundamental_concepts', 'fundamental_concepts_backup')
+
+# 8.3 Moving Files and Directories
+
+"""
+    To move a file or directory to another location. use `shutil.move(src, dst)`
+"""
+
+shutil.move('dir_moved/', 'dir_destination/')
+
+# 8.4 Renaming Files and Directories
+
+"""
+    Python includes `os.rename(src, dst)` for renaming files and directories.
+"""
+
+# Example
+os.rename('first.zip', 'fist_01.zop')
+
+# Another way
+data_file = Path('data_01.txt')
+
+data_file.rename('data.txt')
