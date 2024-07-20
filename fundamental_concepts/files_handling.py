@@ -497,3 +497,68 @@ os.rename('first.zip', 'fist_01.zop')
 data_file = Path('data_01.txt')
 
 data_file.rename('data.txt')
+
+# 9. Archiving
+
+"""
+    With Python we'll can write programs that will create,
+    read and extract data from archives.
+"""
+
+# 9.1 Reading ZIP Files
+
+"""
+    We can use the `zipfile` module that will
+    brings easy functions to open and extract
+    ZIP files
+"""
+
+import zipfile
+
+with zipfile.ZipFile('data.zip', 'r') as zip_obj:
+    read_data = zip_obj.read()
+
+# Get a list of files in the archive
+with zipfile.ZipFile('data.zip', 'r') as zip_obj:
+    read_data = zip_obj.namelist()
+
+# Using `.getinfo()` to retrieve information about the files in the archive
+with zipfile.ZipFile('data.zip', 'r') as zip_obj:
+    file_info = zip_obj.getinfo('sub_dir/any.py')
+    file_info.file_size
+
+# 9.2 Extracting ZIP Archives
+
+"""
+    To extract files, it's necessary use `zipfile.extract()`
+    and `zipfile.extractall()` methods.
+"""
+
+# Extracting single file in current directory
+data_zip = zipfile.ZipFile('data.zip', 'r')
+
+data_zip.extract('file1.py')
+
+# Extracting all files into a different directory
+data_zip.extractall(path='extract_dir/')
+
+data_zip.close()
+
+# 9.3 Extracting Data from Password Protected Archives
+
+"""
+    The `zipfile` supports extracting password protected ZIPs.
+    To do this, it's only necessary pass in the password to
+    the `.extract()` or `.extractall` method as an argument
+"""
+
+with zipfile.ZipFile("secret.zip", "r") as pwd_zip:
+    pwd_zip.extractall(path='extract_dir', pwd='password123')
+
+# 9.4 Creating New ZIP Archives
+
+files_list = ['file1.py', 'sub_dir/', 'file2.py', 'sub_dir2/']
+
+with zipfile.ZipFile("new.zip", "w") as new_zip:
+    for name in files_list:
+        new_zip.write(name)
