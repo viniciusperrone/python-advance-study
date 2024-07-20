@@ -201,7 +201,7 @@ if __name__ == '__main__':
 # 3.1 Creating single directory
 
 # With `os.mkdir`
-# os.mkdir("example_directory/")
+os.mkdir("example_directory/")
 
 # With `pathlib`
 
@@ -382,12 +382,12 @@ except OSError as e:
     pass
 
 # Using `pathlib.Path.unlink()`
-# data_file = Path('C:\\Users\\AnyUser\\Desktop\\Test\\data.txt')
+data_file = Path('C:\\Users\\AnyUser\\Desktop\\Test\\data.txt')
 
-# try:
-#     data_file.unlink()
-# except IsADirectoryError as e:
-#     print(f"Error: {data_file} : {e.strerror}")
+try:
+    data_file.unlink()
+except IsADirectoryError as e:
+    print(f"Error: {data_file} : {e.strerror}")
 
 # 7.2 Deleting Directories
 
