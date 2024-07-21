@@ -631,3 +631,45 @@ with tarfile.open('packages.tar.gz', mode='w:gz') as tar:
 with tarfile.open('packages.tar.gz', mode='r:gz') as t:
   for member in t.getmembers():
     print(member.name)
+
+# 10. An Easier Way of Creating Archives
+
+"""
+    The `shutil` module is also used to
+    create, read and extract ZIP and TAR
+    archives.
+"""
+
+# 10.1 Working with archives using `shutil.make_archive()`
+
+shutil.make_archive('data/backup', 'tar', 'data/')
+
+# To extract
+shutil.unpack_archive('backup.tar', 'extract_dir/')
+
+# 11. Reading Multiple Files
+
+"""
+    Python supports reading data from multiple
+    input streams or from a list of files through
+    `fileinput` module.
+"""
+
+import fileinput
+
+def process(line):
+    print(f"Processing line: {line.strip()}")
+
+for line in fileinput.input():
+    process(line)
+
+# 11.1 Using `fileinput` to Loop Over Multiple Files
+
+import sys
+
+files = fileinput.input()
+for line in files:
+    if fileinput.isfirstline():
+        print(f'\n --- Reading {fileinput.filename()} ---')
+    print('-> ' + line, end='')
+print()
