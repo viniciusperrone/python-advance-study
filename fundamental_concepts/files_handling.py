@@ -562,3 +562,72 @@ files_list = ['file1.py', 'sub_dir/', 'file2.py', 'sub_dir2/']
 with zipfile.ZipFile("new.zip", "w") as new_zip:
     for name in files_list:
         new_zip.write(name)
+
+# 9.5 Opening TAR Archives
+
+"""
+    The TAR files are uncompressed file archives like ZIP.
+    To compress them is necessary `gzip`, `bzip2` and `Izma`
+    compression methods.
+"""
+
+# Reading archive
+import tarfile
+import time
+
+with tarfile.open('example.tar', 'r') as tar_file:
+    print(tar_file.getnames)
+
+# Getting Metadata of each entry in the archive
+for entry in tar_file.getmembers():
+    print(entry.name)
+    print('  Modified:', time.ctime(entry.mtime))
+    print('  Size    :', entry.size, 'bytes')
+    print()
+
+# 9.6 Extracting Files from a TAR Archive
+
+"""
+    To extract files from TAR archives, can use
+    these methods: `.extract`, `.extractfiles`, `.extractall`
+"""
+
+tarfile.extract("README.md")
+
+# To unpack or extract everything from archive, can be use `.extractall`
+tarfile.extractall(path="extracted/")
+
+# To extract file for reading or writing
+f = tar_file.extractfile('app.py')
+
+f.read()
+
+tar_file.close()
+
+# 9.7 Creating New TAR Archives
+
+import tarfile
+
+file_list = ['app.py', 'config.py', 'tests.py']
+
+with tarfile.open('packages.tar', mode='w') as tar:
+    for file in file_list:
+        tar.add(file)
+
+# To add new file to an existing archive
+with tarfile.open("package.tar", mode='r') as tar:
+    for member in tar.getmembers():
+        print(member.name)
+
+# 9.8 Working With Compressed Archives
+
+files = ['app.py', 'config.py', 'tests.py']
+
+with tarfile.open('packages.tar.gz', mode='w:gz') as tar:
+  tar.add('app.py')
+  tar.add('config.py')
+  tar.add('tests.py')
+
+with tarfile.open('packages.tar.gz', mode='r:gz') as t:
+  for member in t.getmembers():
+    print(member.name)
