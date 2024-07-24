@@ -5,27 +5,37 @@
     how to instantiate those classes.
 """
 
-# Example
+# 1. Intro Classes
+
+# This is empty class
+class Person:
+    pass
+
+person = Person()
+
+# Improving class
+
+"""
+    Here, our class called Person will have some attributes and methods
+"""
 class Person:
     name: str
-    age: int
+    age: int = 0
 
-    def __str__(self) -> str:
-        return f"name: {self.name} \n age: {self.age}"
-
-single_person = Person
-
-print(type(single_person))
-
-# Improving Class
-class Person:
-    name: str
-    age: str
-
-    def __init__(self, name, age) -> None:
+    # It's constructor
+    def __init__(self, name: str, age: int = None) -> None:
         self.name = name
         self.age = age
 
-single_person = Person("Vinicius", 22)
+    # An method called increment age
+    def increment_age(self, new_age: int = None) -> None:
+        if new_age is not None:
+            self.age = new_age
+        else:
+            self.age = self.age + 1
 
-print(type(single_person))
+person = Person('Vinicius', 22)
+
+person.increment_age()
+
+print(person.age)
