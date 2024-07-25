@@ -81,3 +81,58 @@ class Point:
     def __repr__(self) -> str:
         return f"{type(self).__name__}(x={self.x}, y={self.y})"
 
+# 2.2 Object Initialization With `.__init__()`
+
+"""
+    The `.__init__` method is probably the most common
+    special method that ever override in your custom class.
+    But, has some relevant information, firstly, as already
+    mentioned it's the result of the object recently created
+    by the `.__new__` method, so it's not class's constructor.
+"""
+
+# Simple Example
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+"""
+    Additionally, keep in mind that `.__init__()` must
+    not explicitly return anything different from None.
+"""
+
+# Improving Rectangle class
+class Rectangle:
+    def __init__(self, width, height):
+        if not (isinstance(width, (int, float)) and width > 0):
+            raise ValueError(f"positive width expect, got {width}")
+
+        if not (isinstance(width, (int, float)) and width > 0):
+            raise ValueError(f"positive height expected, got {height}")
+
+        self.width = width
+        self.height = height
+
+# Using inheritance
+class Person:
+    def __init__(self, name, birth_date):
+        self.name = name
+        self.birth_date = birth_date
+
+class Employee(Person):
+    def __init__(self, name, birth_date, position):
+        super().__init__(name, birth_date)
+        self.position = position
+
+john = Employee("John Doe", "2002-20-01", "Python Developer")
+
+print(john)
+
+"""
+    The base implementation of `.__init__()` comes from
+    built-in object class. This implementation is automatically
+    called when you don't provide an explicit `.__init__()` method
+    in tour classes.
+"""
+
