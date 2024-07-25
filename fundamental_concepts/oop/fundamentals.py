@@ -8,6 +8,8 @@
 # 1. Intro Classes
 
 # This is empty class
+
+
 class Person:
     pass
 
@@ -39,3 +41,43 @@ person = Person('Vinicius', 22)
 person.increment_age()
 
 print(person.age)
+
+"""
+    To mack an class's instance callable, you need
+    to implement a `.__call__()` special method.
+"""
+
+# 2. Using Python Class Constructors
+
+# 2.1 Understanding Python's Instantiation Process
+
+"""
+    When triggering Python's instantiation process whenever
+    call a Python class to create a new instance. This process
+    runs through two separate steps.
+
+    - Create a new instance of the target class
+    - Initialize the new instance with an appropriate initial state
+
+    The first step, it's triggering a special method called `.__new__()`, which
+    is responsible for creating and returning a new empty object. The other one,
+    it's called `.__init__()`, takes the resulting object, along with the class
+    constructor's arguments.
+"""
+
+# Demonstration
+class Point:
+    def __new__(cls, *args, **kwargs):
+        print("1. Create a new instance of Point.")
+
+        return super().__new__(cls)
+
+    def __init__(self, x, y) -> None:
+        print("2. Initialize the new instance of Point.")
+
+        self.x = x
+        self.y = y
+
+    def __repr__(self) -> str:
+        return f"{type(self).__name__}(x={self.x}, y={self.y})"
+
