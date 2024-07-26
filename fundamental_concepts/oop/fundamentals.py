@@ -136,3 +136,48 @@ print(john)
     in tour classes.
 """
 
+# 2.3 Object Creation With `.__new__()`
+
+"""
+    The `.__new__` special method is not necessary to provide it in
+    your own implementation.
+"""
+
+# Proving Custom Object Creators
+class SomeClass:
+    def __new__(cls, *args, **kwargs):
+        instance = super().__new__(cls)
+
+        return instance
+
+print(SomeClass(42))
+
+"""
+    Cases that should customize the `.__new__()` special
+    method. These cases reference the subclass an immutable
+    built-in data type.
+
+"""
+
+# How customize `.__new__` method
+class Distance(float):
+    def __new__(cls, value, unit):
+        instance = super().__new__(cls, value)
+
+        instance.unit = unit
+
+        return instance
+
+in_miles = Distance(42.0, 'Miles')
+
+print(in_miles)
+
+"""
+    This custom `.__new__` runs the three steps. First, the method
+    creates a new instance of the current class, `cls`, by calling
+    `super().__new__()`. This time, the call rolls back to `float.__new__()`,
+    which create a new instance and initializes it using `value` as an argument.
+    The third step, it's create new instance by adding a `.unit` attribute
+    to it. Finally, the new instance gets returned.
+"""
+
