@@ -181,3 +181,22 @@ print(in_miles)
     to it. Finally, the new instance gets returned.
 """
 
+# 3. Providing Multiple Constructors in Your Python Classes
+
+# 4. Supercharge Your Classes With Python `super()`
+
+# 5. Inheritance and Composition
+
+# 6. Managing Attributes With Python's propery
+
+# 7. Python Descriptors
+
+# 8. Pythonic OOP String Conversion: __repr__() cs __str__()
+
+# 9. OOP Method Types in Python
+
+# 10. Operator in Function Overloading in Custom Python Classes
+
+# 11. Using Data Classes in Python
+
+# 12. Metaclasses in Python
